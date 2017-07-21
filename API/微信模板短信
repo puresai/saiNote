@@ -1,0 +1,83 @@
+```
+/*
+ * 发送微信模板短信
+ * $openid  微信用户openid
+ * $href    短信链接到的网址
+ */
+function wx_send($openid, $href){
+    $tpl = array(
+        //接收者d
+        "touser"=>$openid,
+        //这里是你要发送的模板类型id
+        "template_id"=>"@",
+        //这里是点击模板跳转的页面
+        "url" => $href,
+        //标题颜色
+        "topcolor" => "#FFAE89",
+        "data" => array(
+//这里的first,keyword 都要对应这模板里面的信息写 颜色可自定义
+            "first" => array("value" => "购车通知"),
+            "keyword1" => array("value" => "195800元"),
+            "keyword2" => array("value" => "奥迪A3 2017款 Sportback 35 TFSI 风尚型"),
+            "keyword3" => array("value" => "南京市雨花台区"),
+            "keyword4" => array("value" => "02588888888"),
+//这里是通用的 就类似与备注的存在
+            "remark" => array("value" => "支付购车款后，请尽快办理车辆过户手续","color" => "#FF7256"),
+        ),
+    );
+    $json_template = json_encode($tpl);
+
+    $url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".get_access_token();
+    $res = json_decode(http_request($url,urldecode($json_template)),true);
+    if ($res["errcode"] == 0){
+        echo "ok";
+    }else{
+        echo json_encode($res);
+    }
+}
+
+
+/*
+ * 获取access_token
+ */
+function get_access_token(){
+    $appid = z_get_config('wechat_appid');
+    $appsecret = z_get_config('wechat_appsecret');
+    $url_get='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.$appid.'&secret='.$appsecret;
+    $json=z_get_json($url_get);
+    return $json['access_token'];
+}
+
+
+function http_request($url, $data = array())
+{
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    // post数据
+    curl_setopt($ch, CURLOPT_POST, 1);
+    // 把post的变量加上
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    $output = curl_exec($ch);
+    curl_close($ch);
+    return $output;
+}
+
+
+function z_get_json($url){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $output = curl_exec($ch);
+    curl_close($ch);
+    return json_decode($output, true);
+}
+```
+
+
+效果如下：
+![image](images/wxmodel.png)
