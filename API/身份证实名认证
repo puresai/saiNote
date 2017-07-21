@@ -1,0 +1,56 @@
+```
+/*
+ * 身份证校验
+ *
+ */
+function sfz_verify($idcard, $name){
+    $host = "http://idcard.market.alicloudapi.com";
+    $path = "/lianzhuo/idcard";
+    $method = "GET";
+    $appcode = z_get_config('sfz_appcode');
+    $headers = array();
+    array_push($headers, "Authorization:APPCODE " . $appcode);
+    $querys = "cardno=$idcard&name=$name";
+    $bodys = "";
+    $url = $host . $path . "?" . $querys;
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($curl, CURLOPT_FAILONERROR, false);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_HEADER, true);
+    if (1 == strpos("$".$host, "https://"))
+    {
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+    }
+    $output = curl_exec($curl);
+
+    if (curl_getinfo($curl, CURLINFO_HTTP_CODE) == '200') {
+        list($header, $body) = explode("\r\n\r\n", $output, 2);
+    }
+    //dump($output);
+
+    curl_close($curl);
+    return $body;
+}
+
+```
+
+正确返回值如下：
+
+```
+{
+  "resp": {
+    "code": 0,
+    "desc": "匹配"
+  },
+  "data": {
+    "sex": "男",
+    "address": "广东省清远市清新县",
+    "birthday": "1989-05-25"
+  }
+}
+```
