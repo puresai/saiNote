@@ -1,0 +1,21 @@
+﻿# 基础知识之面向对象
+
+面向对象三要素（即面向对象三大特性）
+-  封装(Encapsulation)
+-　继承(Inheritance)
+-　多态(Polymorphism)
+
+面向对象五原则
+-　单一职责原则(SRP)
+-　开放-封闭原则(OCP)
+-　里氏替换原则(LSP)
+-　依赖倒置原则(DIP)
+-　接口隔离原则(ISP)
+
+面向对象六视点
+-　复用(Reusibility)
+-　扩展(Extensibility)
+-　分离(Separability)
+-　变化(Change)
+-　简约(Simplicity)
+-　一致(Coherance)
