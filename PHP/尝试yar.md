@@ -50,7 +50,7 @@ echo($api->hello('13sai'));
 ```
 
 使用简单，我们也可以访问http://localhost/yar/server.php，可看到接口说明！
-![](./images/yar1.png)
+![yar](../images/yar1.png)
 
 
 
