@@ -11,7 +11,7 @@ var str2 = "0a2b3c4d5e";
 var pattern = /([a-z])(\d)[a-z]/g;
 console.log(pattern.test(str1));
 console.log(pattern.test(str2));
-![](./images/rex1.png)
+![image](./images/rex1.png)
 
 2.search
 search() 方法用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串。
@@ -29,7 +29,7 @@ var pattern = /([a-z])(\d)[a-z]/g;
 
 console.log(str1.search(pattern));
 console.log(str2.search(pattern));
-![](./images/rex2.png)
+![image](./images/rex2.png)
 
 3.match
 match() 方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。
@@ -45,7 +45,7 @@ var str2 = "0a2b3c4d5e";
 var pattern = /([a-z])(\d)[a-z]/g;
 console.log(str1.match(pattern));
 console.log(str2.match(pattern));
-![](./images/rex3.png)
+![image](./images/rex3.png)
 
 注意：在全局检索模式下，match() 即不提供与子表达式匹配的文本的信息，也不声明每个匹配子串的位置。如果您需要这些全局检索的信息，可以使用下面介绍的exec()。
 
@@ -69,7 +69,7 @@ var str2 = "0a2b3c4d5e";
 var pattern = /([a-z])(\d)[a-z]/g;
 console.log(pattern.exec(str2));
 console.log(pattern.exec(str2));
-![](./images/rex4.png)
+![image](./images/rex4.png)
 
 
 例2：
@@ -82,7 +82,7 @@ while ((result2 = pattern.exec(str2)) != null)  {
   console.log(result2.index);
   console.log(pattern.lastIndex);
 }
-![](./images/rex5.png)
+![image](./images/rex5.png)
 
 5.replace
 replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
@@ -100,7 +100,7 @@ var pattern = /([a-z])(\d)[a-z]/g;
 console.log(str2);
 console.log(str2.replace(pattern,'s'));
 console.log(str2.replace(pattern,'$1'));
-![](./images/rex1.png)
+![image](./images/rex1.png)
 
 例2：
 var str1 = "000";
@@ -125,7 +125,7 @@ console.log(str2.replace(pattern,function(match,group1,group2,index,origin){
 	num = parseInt(group2); + 1;
 	return group1 + num;
 }));
-![](./images/rex8.png)
+![image](./images/rex8.png)
 
 
 6.split
@@ -139,7 +139,7 @@ var str2 = "a,b,c,d";
 
 console.log(str2);
 console.log(str2.split(','));
-![](./images/rex9.png)
+![image](./images/rex9.png)
 
 例2：
 var str1 = "000";
@@ -148,7 +148,7 @@ var pattern = /[a-z]\d[a-z]/g;
 
 console.log(str2);
 console.log(str2.split(pattern));
-![](./images/rex10.png)
+![image](./images/rex10.png)
 
 最后来看个有趣的，
 例3：
@@ -170,7 +170,7 @@ console.log(str2.split(pattern2));
 console.log(str2.split(pattern3));
 console.log(str2.split(pattern4));
 console.log(str2.split(pattern5));
-![](./images/rex11.png)
+![image](./images/rex11.png)
 
 split第二个参数是限制数组长度，而正则如果使用了group（也就是小括号），返回数组也会把group里的字符包含进去
 
