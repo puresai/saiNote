@@ -85,6 +85,49 @@ WantedBy=multi-user.target
 
 测试一下。
 
+脚本说明
+```
+主要有以下三部分
+[unit] :定义与Unit类型无关的通用选项；用于提供unit的描述信息、 unit行为及依赖关系等
+
+[Service]：与特定类型相关的专用选项；此处为Service类型
+
+[Install]：定义由“ systemctl enable”以及"systemctl disable“命令在实现服务启用或禁用时用到的一些选项
 
 
+----------
+Service参数
 
+EnvironmentFile：环境配置文件
+ExecStart：指明启动unit要运行命令或脚本的绝对路径
+ExecStartPre： ExecStart前运行
+ExecStartPost： ExecStart后运行
+ExecRsload: 重启当前服务时执行的命令
+ExecStopPost：停止当前服务之后执行的命令
+ExecStartSec：自动重启当前服务间隔的秒数
+ExecStop：指明停止unit要运行的命令或脚本
+Restart：当设定Restart=1时，则当次daemon服务意外终止后，会再次自动启动此服务。
+TimeoutSec：定义 Systemd 停止当前服务之前等待的秒数。
+Environment：指定环境变量。
+
+
+----------
+
+
+Install参数：
+
+Alias：别名，可使用systemctl command Alias.service
+RequiredBy：被哪些units所依赖，强依赖
+WantedBy：被哪些units所依赖，弱依赖
+Also：安装本服务的时候还要安装别的相关服务
+
+```
+
+
+更多请看：
+[在linux下创建自定义服务][1]
+[linux中的unit的配置文件][2]
+
+
+  [1]: https://www.jianshu.com/p/92208194d700
+  [2]: http://blog.51cto.com/gavin0/2156626
