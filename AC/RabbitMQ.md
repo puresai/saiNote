@@ -4,8 +4,7 @@
 
 ---
 
-> RabbitMQ是轻量级的，很容易部署在前提和云中。它支持多种消息传递协议。RabbitMQ可以部署在分布式和联合配置中，以满足高规模、高可用性的需求。
-RabbitMQ运行在许多操作系统和云环境上，并为大多数流行语言提供了广泛的开发工具。
+> RabbitMQ is lightweight and easy to deploy on premises and in the cloud. It supports multiple messaging protocols. RabbitMQ can be deployed in distributed and federated configurations to meet high-scale, high-availability requirements.
 
 ### 1. 安装：
 
