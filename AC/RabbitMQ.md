@@ -80,7 +80,6 @@ $config = [
 ];
 
 $exName = 'changes'; //交换机名
-$queueMame = 'queue1'; //队列名
 $route = 'key'; //路由key
 
 // 创建连接和channel
@@ -97,9 +96,9 @@ $message = "消息测试";
 $ex = new AMQPExchange($channel);
 $ex->setName($exName);
 
-//发送消息
+//发送消息，注意持久化也要设置['delivery_mode' => AMQP_DURABLE]
 for($i=0; $i<5; $i++){
-    echo "Send Message:".$ex->publish($i.':'.$message, $route, AMQP_DURABLE)."\n";
+    echo "Send Message:".$ex->publish($i.':'.$message, $route, AMQP_DURABLE, ['delivery_mode' => AMQP_DURABLE])."\n";
 }
 
 $conn->disconnect();
