@@ -34,27 +34,24 @@ default-storage-engine=INNODB
 
 进入bin目录
 
-> mysqld –-initialize //初始化
-mysqld install
+> mysqld –-initialize --console //初始化，注意最后面的随机密码
+> mysqld install
 
 4. 启动重置
 启动mysql
 > net start mysql
 
-进入data，查看.err文件，查看生成的随机密码。
+此处一直失败，报错Can't open the mysql.plugin table，网上寻找答案试验无果，然后下载了msi，安装提示需要net framework4.5.2，然后去下载，回来重新操作先执行mysql remove,清空data目录，初始化安装后启动成功！
 
-> mysql -u root -p 
+
+> mysql -u root -p // 输入上面的随机密码，或进入data，查看.err文件，查看生成的随机密码
 
 然后输入密码，进入mysql
 
 > 此处，一直报10061错误，然后反复装了几次，失败，回来把端口改为3306，成功进入。
 
 最后重置密码
-> ALTER USER 'root'@'localhost' IDENTIFIED BY '新密码' PASSWORD EXPIRE NEVER;	// 密码永不过期
-
-
-
-
+> ALTER USER 'root'@'localhost' IDENTIFIED BY '新密码' PASSWORD EXPIRE NEVER;	// 设置密码永不过期
 
 
   [1]: https://dev.mysql.com/downloads/mysql/5.7.html#downloads "mysql下载"
